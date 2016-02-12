@@ -14,44 +14,45 @@
 
 ## Description
 
-Start with a one- or two-sentence summary of what the module does and/or what
-problem it solves. This is your 30-second elevator pitch for your module.
-Consider including OS/Puppet version it works with.
+This module's purpose in life is to take the members of a group defined
+in an LDAP directory and ensure that  they are allowed to login to an AIX
+server.
 
-You can give more descriptive information in a second paragraph. This paragraph
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?" If your module has a range of functionality (installation, configuration,
-management, etc.), this is the time to mention it.
+This is to support AIX in LDAP environments where the directory service
+does not allow AIX to be fully managed from the directory.
+
+This module will gather the list of users in a group, gather a list of users
+from /etc/security/user and then compare the two.
+
+Any users in the group list which are not on the system already will be added
+if ensure is set to 'present.'  The users home directory will be created
+if it does not already exist, /etc/security/.profile will be copied to it,
+permission set to the user and the mode set to 750.
 
 ## Setup
 
+Add this to your puppet installations modules directory and sync your agents.
+
 ### What group_allow affects **OPTIONAL**
 
-If it's obvious what your module touches, you can skip this section. For
-example, folks can probably figure out that your mysql_instance module affects
-their MySQL instances.
+This module will gather the list of users in a group, gather a list of users
+from /etc/security/user and then compare the two.
 
-If there's more that they should know about, though, this is the place to mention:
-
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you might want to include an additional "Upgrading" section
-here.
+Any users in the group list which are not on the system already will be added
+if ensure is set to 'present.'  The users home directory will be created
+if it does not already exist, /etc/security/.profile will be copied to it,
+permission set to the user and the mode set to 750.
 
 ### Beginning with group_allow
 
-The very basic steps needed for a user to get the module up and running. This
-can include setup steps, if necessary, or it can be an example of the most
-basic use of the module.
+Valid parameters are:
+ensure:   It is ensurable, but it does not remove users.  It will only add
+users who are not already allowed to login.
+
+Example:
+    group_allow { 'appusers':
+      ensure => present
+    }
 
 ## Usage
 
@@ -61,20 +62,20 @@ examples and code samples for doing things with your module.
 
 ## Reference
 
-Here, include a complete list of your module's classes, types, providers,
-facts, along with the parameters for each. Users refer to this section (thus
-the name "Reference") to find specific details; most users don't read it per
-se.
+This module was built to explicitly use the AIX commands lsgroup, lsuser and chsec.
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc. If there
-are Known Issues, you might want to include them under their own heading here.
+This module can only add users.  Even though it is ensurable, it won't do anything
+if you set ensure => absent.  The problem here is that a user can be a member of 
+more than one group and/or a user may have been added as a one-off.  This module 
+just simplifies and automates getting users onto the server.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+This was written specifically to support AIX with functionality that Windows and
+even Linux enjoy.  I don't konw if there is a need for this anywhere else, but if 
+there is feel free to embrace and extend.
 
 ## Release Notes/Contributors/Etc. **Optional**
 
