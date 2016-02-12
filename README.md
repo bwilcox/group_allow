@@ -45,20 +45,18 @@ permission set to the user and the mode set to 750.
 
 ### Beginning with group_allow
 
-Valid parameters are:
-ensure:   It is ensurable, but it does not remove users.  It will only add
-users who are not already allowed to login.
+It will only add users who are not already allowed to login.
 
-Example:
-    group_allow { 'appusers':
-      ensure => present
-    }
+Valid parameters are:
+ensure:   It is ensurable, but it does not remove users.  
 
 ## Usage
 
-This section is where you describe how to customize, configure, and do the
-fancy stuff with your module here. It's especially helpful if you include usage
-examples and code samples for doing things with your module.
+Example:
+
+    group_allow { 'appusers':
+      ensure => present
+    }
 
 ## Reference
 
@@ -77,8 +75,3 @@ This was written specifically to support AIX with functionality that Windows and
 even Linux enjoy.  I don't konw if there is a need for this anywhere else, but if 
 there is feel free to embrace and extend.
 
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You can also add any additional sections you feel
-are necessary or important to include here. Please use the `## ` header.
