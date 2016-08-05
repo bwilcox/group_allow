@@ -33,16 +33,6 @@ permission set to the user and the mode set to 750.
 
 Add this to your puppet installations modules directory and sync your agents.
 
-### What group_allow affects **OPTIONAL**
-
-This module will gather the list of users in a group, gather a list of users
-from /etc/security/user and then compare the two.
-
-Any users in the group list which are not on the system already will be added
-if ensure is set to 'present.'  The users home directory will be created
-if it does not already exist, /etc/security/.profile will be copied to it,
-permission set to the user and the mode set to 750.
-
 ### Beginning with group_allow
 
 It will only add users who are not already allowed to login.
