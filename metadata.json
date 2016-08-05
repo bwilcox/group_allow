@@ -2,13 +2,23 @@
   "name": "bwilcox-group_allow",
   "version": "1.0.1",
   "author": "Bill Wilcox",
-  "summary": "Allow login to unix servers based on membership of a ldap based group.",
+  "summary": "Allow login to AIX servers based on membership of a ldap based group.",
   "license": "Apache-2.0",
   "source": "git@github.com:bwilcox/group_allow.git",
-  "project_page": null,
-  "issues_url": null,
+  "project_page": "https://github.com/bwilcox/group_allow",
+  "issues_url": "https://github.com/bwilcox/group_allow/issues",
+  "tags": ["aix"],
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "AIX",
+      "operatingsystemrelease": [
+        "6.1",
+        "7.1"
+      ]
+    }
   ],
   "data_provider": null
 }
