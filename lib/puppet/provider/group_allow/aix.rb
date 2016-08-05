@@ -76,7 +76,7 @@ Puppet::Type.type(:group_allow).provide(:aix) do
 
       begin
         # Verify the user is not already on the system
-        grep('-w', user, '/etc/security/user')
+        grep('-w', "#{user}:", '/etc/security/user')
 
       rescue Puppet::ExecutionFailure
 
